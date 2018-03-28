@@ -1,6 +1,6 @@
-# vue-graphql
+# wp-vue-graphql-theme
 
-> A Vue.js project
+> WordPress, Vue, GraphQL Theme
 
 ## Build Setup
 
