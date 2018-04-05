@@ -1,23 +1,48 @@
 <template>
   <div id="app">
-    <Header/>
-    <!-- <router-view/> -->
-    <Test/>
-    <Footer/>
+    <h4 v-if="loading">Loading...</h4>
+    <app-header :getData="getData"/>
+    <router-view :getData="getData"/>
+    <!-- <app-content :getData="getData"/> -->
+    <!-- <app-footer :getData="getData"/> -->
   </div>
 </template>
 
 <script>
-import Test from '@/components/Test'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import { PAGE_QUERY } from './graphql'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Page from './components/Page'
 
 export default {
-  name: 'App',
   components: {
-    Test,
-    Header,
-    Footer
+    'app-header': Header,
+    'app-footer': Footer,
+    'app-page': Page
+  },
+  // Local state
+  data () {
+    return {
+      getData: [],
+      loading: 0
+    }
+  },
+  // Apollo GraphQL
+  apollo: {
+    getData: {
+      query: PAGE_QUERY,
+      update (data) {
+        return data.pages.edges
+      }
+    }
+  },
+  methods: {
+    url: function (value) {
+      return value.node.slug === 'home' ? '/' : value.node.slug
+    },
+    mapTest: function (value) {
+      return value.map()
+    }
   }
 }
 </script>

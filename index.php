@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>vue-graphql</title>
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-    <?php wp_head(); ?>
+    <?php wp_head("Content-Type: application/x-javascript;"); ?>
   </head>
   <body>
     <div id="app"></div>

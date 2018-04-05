@@ -4,7 +4,7 @@ export const PAGE_QUERY = gql`
   query allPages{
     pages (where: {orderby: {field: MENU_ORDER, order: ASC}}){
       edges {
-        node {
+        node{
           id
           title
           content

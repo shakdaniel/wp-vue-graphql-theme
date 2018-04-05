@@ -1,37 +1,23 @@
 <template>
-  <div class="header">
-    <span v-if="loading">...</span>
-    <nav>
-      <!-- className={currentPage === page.slug ? "active" : ""} -->
-      <a v-for="value in allPages" :key="value.node.id" :href="url(value)">{{ value.node.title }}</a>
-    </nav>
-  </div>
+  <nav class="header">
+    <!-- <router-link v-for="value in getData" :key="value.node.id" :to="url(value)" class="link" exact>{{ value.node.title }}</router-link> -->
+    <router-link class="link" :to="{name: 'Home'}" exact>Home</router-link>
+    <router-link class="link" :to="{name: 'Projects'}">Projects</router-link>
+    <router-link class="link" :to="{name: 'About'}">About</router-link>
+    <router-link class="link" :to="{name: 'Blog'}">Blog</router-link>
+    <router-link class="link" :to="{name: 'Contact'}">Contact</router-link>
+  </nav>
 </template>
 
 <script>
-import { PAGE_QUERY } from '../graphql'
 export default {
   name: 'Header',
-  data () {
-    return {
-      allPages: [],
-      loading: 0
-    }
-  },
-  apollo: {
-    allPages: {
-      query: PAGE_QUERY,
-      update (data) {
-        return data.pages.edges
-      }
-    }
-  },
-  methods: {
-    url (value) {
-      return value.node.slug === 'home' ? '/' : value.node.slug
-    }
-  }
+  props: ['getData']
 }
 </script>
+
 <style>
+  .router-link-exact-active{
+    color: aqua
+  }
 </style>
